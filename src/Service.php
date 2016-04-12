@@ -8,7 +8,7 @@ class Service
 {
     const HOST = "http://api.atvietnam.vn/oapi/airline/";
 
-    protected static client = null;
+    protected static $client = null;
     protected static $username;
     protected static $password;
 
@@ -45,7 +45,7 @@ class Service
 
     protected static function __request($verb, $endpoint, $params = [], $className = null)
     {
-        $opt = ['auth' => [$this->username, $this->password]];
+        $opt = ['auth' => [static::$username, static::$password]];
         $opt = array_merge($opt, $params);
         $res = json_decode((string) $this->__client()->request($verb, $endpoint, $opt)->getBody(), true);
         if (empty($res['value'])) {
