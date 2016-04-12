@@ -47,7 +47,7 @@ class Service
     {
         $opt = ['auth' => [static::$username, static::$password]];
         $opt = array_merge($opt, $params);
-        $res = json_decode((string) $this->__client()->request($verb, $endpoint, $opt)->getBody(), true);
+        $res = json_decode((string) static::__client()->request($verb, $endpoint, $opt)->getBody(), true);
         if (empty($res['value'])) {
             return [];
         }
