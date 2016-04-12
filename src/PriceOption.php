@@ -15,7 +15,7 @@ class PriceOption extends Object
 
     public function update($params)
     {
-        Service::updatePriceOption($params);
+        Service::updatePriceOption($this->id, $params);
         foreach ($params as $key => $val) {
             $attr = lcfirst($key);
             if (isset($this->$attr)) {
