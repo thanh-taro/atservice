@@ -40,7 +40,7 @@ class Service
 
     public static function updatePriceOption($id, $params)
     {
-        return static::__request('PATCH', 'PriceOptions', ['json' => $params]);
+        return static::__request('PATCH', "PriceOptions($id)", ['json' => $params]);
     }
 
     protected static function __request($verb, $endpoint, $params = [], $className = null)
@@ -54,9 +54,10 @@ class Service
         if (empty($className)) {
             return $res['value'];
         }
+        $realClassName = "\\atservice\\$className";
         $result = [];
         foreach ($res['value'] as $val) {
-            $result[] = new $className($val);
+            $result[] = new $realClassName($val);
         }
         return $result;
     }
