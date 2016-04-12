@@ -8,7 +8,7 @@ class Object
     {
         foreach ($opt as $key => $val) {
             $attr = lcfirst($key);
-            if (isset($this->$attr)) {
+            if (property_exists($this, $attr)) {
                 $this->$attr = $val;
             }
         }

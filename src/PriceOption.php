@@ -25,4 +25,14 @@ class PriceOption extends Object
         return true;
     }
 
+    public function toArray()
+    {
+        $arr = parent::toArray();
+        $arr['agentTicketCharge'] = doubleval($arr['agentTicketCharge']);
+        $arr['internationalTicketCharge'] = doubleval($arr['internationalTicketCharge']);
+        $arr['vATRate'] = doubleval($arr['vATRate']);
+        $arr['usdToVndRate'] = doubleval($arr['usdToVndRate']);
+        return $arr;
+    }
+
 }
