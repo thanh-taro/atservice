@@ -28,6 +28,7 @@ class Ticket extends Object
         $priceSummary = [];
         foreach ($opt['PriceSummaries'] as $val) {
             $item = [
+                'description' => $val['Description'],
                 'price' => intval($val['Price']),
                 'quantity' => intval($val('Quantity')),
                 'total' => intval($val['Total']),
