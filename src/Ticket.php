@@ -4,6 +4,7 @@ namespace atservice;
 
 class Ticket extends Object
 {
+
     public $flightNumber;
     public $airline;
     public $airlineCode;

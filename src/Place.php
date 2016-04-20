@@ -15,5 +15,4 @@ class Place extends Object
     public $supportVietJetAir;
     public $supportVietNamAirline;
     public $order;
-
 }

@@ -25,14 +25,20 @@ class PriceOption extends Object
         return true;
     }
 
-    public function toArray()
+    public function toArray($atFormat = false)
     {
-        $arr = parent::toArray();
-        $arr['agentTicketCharge'] = doubleval($arr['agentTicketCharge']);
-        $arr['internationalTicketCharge'] = doubleval($arr['internationalTicketCharge']);
-        $arr['vATRate'] = doubleval($arr['vATRate']);
-        $arr['usdToVndRate'] = doubleval($arr['usdToVndRate']);
+        $arr = parent::toArray($atFormat);
+        if ($atFormat) {
+            $arr['AgentTicketCharge'] = doubleval($arr['AgentTicketCharge']);
+            $arr['InternationalTicketCharge'] = doubleval($arr['InternationalTicketCharge']);
+            $arr['VATRate'] = doubleval($arr['VATRate']);
+            $arr['UsdToVndRate'] = doubleval($arr['UsdToVndRate']);
+        } else {
+            $arr['agentTicketCharge'] = doubleval($arr['agentTicketCharge']);
+            $arr['internationalTicketCharge'] = doubleval($arr['internationalTicketCharge']);
+            $arr['vATRate'] = doubleval($arr['vATRate']);
+            $arr['usdToVndRate'] = doubleval($arr['usdToVndRate']);
+        }
         return $arr;
     }
-
 }

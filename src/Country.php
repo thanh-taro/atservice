@@ -11,5 +11,4 @@ class Country extends Object
     public $englishName;
     public $jetStarCode;
     public $vietJetAirCode;
-
 }

@@ -75,7 +75,7 @@ class Service
     protected static function __client()
     {
         if (static::$client === null) {
-            static::$client = new Client(['base_uri' => static::HOST]);
+            static::$client = new Client(['base_uri' => static::HOST, 'timeout' => 0]);
         }
         return static::$client;
     }

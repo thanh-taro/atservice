@@ -19,5 +19,4 @@ class TicketOption extends Object
         $this->price = doubleval($this->price);
         $this->totalPrice = doubleval($this->totalPrice);
     }
-
 }

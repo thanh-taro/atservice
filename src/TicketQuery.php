@@ -2,7 +2,7 @@
 
 namespace atservice;
 
-class TicketOption extends Object
+class TicketQuery extends Object
 {
 
     public $roundTrip;
@@ -20,7 +20,7 @@ class TicketOption extends Object
     public function __construct($opt = [])
     {
         parent::__construct($opt);
-        if (empty($this->returnDate)) {
+        if (empty($this->returnDate) && $this->roundTrip == true) {
             $this->returnDate = $this->departDate;
         }
         $this->returnDate .= 'T00:00:00.000';

@@ -11,5 +11,4 @@ class Province extends Object
     public $name;
     public $jetStarCode;
     public $vietJetAirCode;
-
 }
