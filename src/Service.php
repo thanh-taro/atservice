@@ -45,12 +45,12 @@ class Service
         } else {
             $params = $ticketQuery->toArray();
         }
-        return static::__request('PATCH', 'Flights/Find?$expand=TicketOptions,PriceSummaries', ['json' => $params], 'Ticket');
+        return static::__request('POST', 'Flights/Find?$expand=TicketOptions,PriceSummaries', ['json' => $params], 'Ticket');
     }
 
     public static function updatePriceOption($id, $params)
     {
-        return static::__request('POST', "PriceOptions($id)", ['json' => $params]);
+        return static::__request('PATCH', "PriceOptions($id)", ['json' => $params]);
     }
 
     protected static function __request($verb, $endpoint, $params = [], $className = null)
