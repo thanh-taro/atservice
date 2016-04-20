@@ -30,7 +30,7 @@ class Ticket extends Object
             $item = [
                 'description' => $val['Description'],
                 'price' => intval($val['Price']),
-                'quantity' => intval($val('Quantity')),
+                'quantity' => intval($val['Quantity']),
                 'total' => intval($val['Total']),
             ];
             if ($val['Code'] === 'NET') {
@@ -38,6 +38,7 @@ class Ticket extends Object
             } else {
                 $type = 'tax';
             }
+            $personType = 'adult';
             switch ($val['PassengerType']) {
                 case 'ADT':
                     $personType = 'adult';
