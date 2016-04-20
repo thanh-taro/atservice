@@ -64,7 +64,7 @@ class Ticket extends Object
                     $priceSummary['net']['adult'] = [
                         'description' => $defaultTicketOption->priceSummary['net']['adult']['description'],
                         'price' => $adultPrice,
-                        'quantities' => $defaultTicketOption->priceSummary['net']['adult']['quantity'],
+                        'quantity' => $defaultTicketOption->priceSummary['net']['adult']['quantity'],
                         'total' => $adultPrice * $defaultTicketOption->priceSummary['net']['adult']['quantity'],
                     ];
                     if (!empty($defaultTicketOption->priceSummary['net']['child'])) {
@@ -73,7 +73,7 @@ class Ticket extends Object
                         $priceSummary['net']['child'] = [
                             'description' => $defaultTicketOption->priceSummary['net']['child']['description'],
                             'price' => $childPrice,
-                            'quantities' => $defaultTicketOption->priceSummary['net']['child']['quantity'],
+                            'quantity' => $defaultTicketOption->priceSummary['net']['child']['quantity'],
                             'total' => $childPrice * $defaultTicketOption->priceSummary['tax']['child']['quantity'],
                         ];
                     }
@@ -83,7 +83,7 @@ class Ticket extends Object
                         $priceSummary['net']['infant'] = [
                             'description' => $defaultTicketOption->priceSummary['net']['infant']['description'],
                             'price' => $infantPrice,
-                            'quantities' => $defaultTicketOption->priceSummary['net']['infant']['quantity'],
+                            'quantity' => $defaultTicketOption->priceSummary['net']['infant']['quantity'],
                             'total' => $infantPrice * $defaultTicketOption->priceSummary['tax']['infant']['quantity'],
                         ];
                     }
@@ -93,7 +93,7 @@ class Ticket extends Object
                     $priceSummary['tax']['adult'] = [
                         'description' => $defaultTicketOption->priceSummary['tax']['adult']['description'],
                         'price' => $adultTax,
-                        'quantities' => $defaultTicketOption->priceSummary['tax']['adult']['quantity'],
+                        'quantity' => $defaultTicketOption->priceSummary['tax']['adult']['quantity'],
                         'total' => $adultTax * $defaultTicketOption->priceSummary['tax']['adult']['quantity'],
                     ];
                     if (!empty($defaultTicketOption->priceSummary['tax']['child'])) {
@@ -101,7 +101,7 @@ class Ticket extends Object
                         $priceSummary['tax']['child'] = [
                             'description' => $defaultTicketOption->priceSummary['tax']['child']['description'],
                             'price' => $childTax,
-                            'quantities' => $defaultTicketOption->priceSummary['tax']['child']['quantity'],
+                            'quantity' => $defaultTicketOption->priceSummary['tax']['child']['quantity'],
                             'total' => $childTax * $defaultTicketOption->priceSummary['tax']['child']['quantity'],
                         ];
                     }
@@ -110,7 +110,7 @@ class Ticket extends Object
                         $priceSummary['tax']['infant'] = [
                             'description' => $defaultTicketOption->priceSummary['tax']['infant']['description'],
                             'price' => $infantTax,
-                            'quantities' => $defaultTicketOption->priceSummary['tax']['infant']['quantity'],
+                            'quantity' => $defaultTicketOption->priceSummary['tax']['infant']['quantity'],
                             'total' => $infantTax * $defaultTicketOption->priceSummary['tax']['infant']['quantity'],
                         ];
                     }
@@ -124,5 +124,20 @@ class Ticket extends Object
         });
         $this->ticketOptions = $ticketOptions;
         $this->priceFrom = $ticketOptions[0]->price;
+    }
+
+    public function toArray($atFormat = false)
+    {
+        $arr = parent::toArray($atFormat);
+        if ($atFormat) {
+            foreach ($arr['TicketOptions'] as $key => $ticketOption) {
+                $arr['TicketOptions'][$key] = $ticketOption->toArray($atFormat);
+            }
+        } else {
+            foreach ($arr['ticketOptions'] as $key => $ticketOption) {
+                $arr['ticketOptions'][$key] = $ticketOption->toArray($atFormat);
+            }
+        }
+        return $arr;
     }
 }

@@ -19,4 +19,17 @@ class TicketOption extends Object
         $this->price = doubleval($this->price);
         $this->totalPrice = doubleval($this->totalPrice);
     }
+
+    public function toArray($atFormat = false)
+    {
+        $arr = parent::toArray($atFormat);
+        if ($atFormat && !empty($this->priceSummary)) {
+            $priceSummary = [];
+            foreach ($this->priceSummary as $key => $val) {
+                $priceSummary[ucfirst($key)] = $val;
+            }
+            $arr['PriceSummary'] = $priceSummary;
+        }
+        return $arr;
+    }
 }
