@@ -11,7 +11,7 @@ class TicketOption extends Object
     public $price;
     public $totalPrice;
     public $stops;
-    public $priceSummaries;
+    public $priceSummary;
 
     public function __construct($opt = [])
     {

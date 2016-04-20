@@ -14,9 +14,16 @@ class Object
         }
     }
 
-    public function toArray()
+    public function toArray($atFormat = false)
     {
         $attrs = get_object_vars($this);
+        if ($atFormat) {
+            $atRes = [];
+            foreach ($attrs as $key => $val) {
+                $atRes[ucfirst($key)] = $val;
+            }
+            $attrs = $atRes;
+        }
         return empty($attrs) ? [] : $attrs;
     }
 }

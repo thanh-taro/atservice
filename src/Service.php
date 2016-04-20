@@ -38,6 +38,16 @@ class Service
         return static::__request('GET', 'PriceOptions', [], 'PriceOption');
     }
 
+    public static function getTickets($ticketQuery)
+    {
+        if (is_array($ticketQuery)) {
+            $params = $ticketQuery;
+        } else {
+            $params = $ticketQuery->toArray();
+        }
+        return static::__request('PATCH', 'Flights/Find?$expand=TicketOptions,PriceSummaries', ['json' => $params], 'Ticket');
+    }
+
     public static function updatePriceOption($id, $params)
     {
         return static::__request('PATCH', "PriceOptions($id)", ['json' => $params]);
