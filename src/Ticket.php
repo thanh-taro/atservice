@@ -97,7 +97,7 @@ class Ticket extends Object
                     if (!empty($defaultTicketOption->priceSummary['tax']['child'])) {
                         $childTax = $defaultTicketOption->priceSummary['tax']['child']['price'] - $defaultTicketOption->priceSummary['net']['child']['price']/10 + $priceSummary['net']['child']['price'];
                         $priceSummary['tax']['child'] = [
-                            'description' => $defaultTicketOption->priceSummary['net']['child']['description'],
+                            'description' => $defaultTicketOption->priceSummary['tax']['child']['description'],
                             'price' => $childTax,
                             'quantities' => $defaultTicketOption->priceSummary['tax']['child']['quantity'],
                             'total' => $childTax * $defaultTicketOption->priceSummary['tax']['child']['quantity'],
@@ -106,7 +106,7 @@ class Ticket extends Object
                     if (!empty($defaultTicketOption->priceSummary['tax']['infant'])) {
                         $infantTax = $defaultTicketOption->priceSummary['tax']['infant']['price'] - $defaultTicketOption->priceSummary['net']['infant']['price']/10 + $priceSummary['net']['infant']['price'];
                         $priceSummary['tax']['infant'] = [
-                            'description' => $defaultTicketOption->priceSummary['net']['infant']['description'],
+                            'description' => $defaultTicketOption->priceSummary['tax']['infant']['description'],
                             'price' => $infantTax,
                             'quantities' => $defaultTicketOption->priceSummary['tax']['infant']['quantity'],
                             'total' => $infantTax * $defaultTicketOption->priceSummary['tax']['infant']['quantity'],
