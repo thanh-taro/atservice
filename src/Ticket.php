@@ -89,7 +89,8 @@ class Ticket extends Object
                     }
                 }
                 if (!empty($defaultTicketOption->priceSummary['tax']['adult']) && !empty($priceSummary['net']['child'])) {
-                    $adultTax = $defaultTicketOption->priceSummary['tax']['adult']['price'] - $defaultTicketOption->price / 10 + intval($ticketOptionOpt['Price']) / 10;
+                    // Ceil to thoundsand
+                    $adultTax = ceil(ceil($defaultTicketOption->priceSummary['tax']['adult']['price'] - $defaultTicketOption->price / 10 + intval($ticketOptionOpt['Price']) / 10) / 1000) * 1000;
                     $priceSummary['tax']['adult'] = [
                         'description' => $defaultTicketOption->priceSummary['tax']['adult']['description'],
                         'price' => $adultTax,
@@ -97,7 +98,8 @@ class Ticket extends Object
                         'total' => $adultTax * $defaultTicketOption->priceSummary['tax']['adult']['quantity'],
                     ];
                     if (!empty($defaultTicketOption->priceSummary['tax']['child'])) {
-                        $childTax = $defaultTicketOption->priceSummary['tax']['child']['price'] - $defaultTicketOption->priceSummary['net']['child']['price'] / 10 + $priceSummary['net']['child']['price'] / 10;
+                        // Ceil to thoundsand
+                        $childTax = ceil(ceil($defaultTicketOption->priceSummary['tax']['child']['price'] - $defaultTicketOption->priceSummary['net']['child']['price'] / 10 + $priceSummary['net']['child']['price'] / 10) / 1000) * 1000;
                         $priceSummary['tax']['child'] = [
                             'description' => $defaultTicketOption->priceSummary['tax']['child']['description'],
                             'price' => $childTax,
@@ -106,7 +108,8 @@ class Ticket extends Object
                         ];
                     }
                     if (!empty($defaultTicketOption->priceSummary['tax']['infant'])) {
-                        $infantTax = $defaultTicketOption->priceSummary['tax']['infant']['price'] - $defaultTicketOption->priceSummary['net']['infant']['price'] / 10 + $priceSummary['net']['infant']['price'] / 10;
+                        // Ceil to thoundsand
+                        $infantTax = ceil(ceil($defaultTicketOption->priceSummary['tax']['infant']['price'] - $defaultTicketOption->priceSummary['net']['infant']['price'] / 10 + $priceSummary['net']['infant']['price'] / 10) / 1000) * 1000;
                         $priceSummary['tax']['infant'] = [
                             'description' => $defaultTicketOption->priceSummary['tax']['infant']['description'],
                             'price' => $infantTax,
