@@ -43,7 +43,7 @@ class Service
         if (is_array($ticketQuery)) {
             $params = $ticketQuery;
         } else {
-            $params = $ticketQuery->toArray();
+            $params = $ticketQuery->toArray(true);
         }
         return static::__request('POST', 'Flights/Find?$expand=TicketOptions,PriceSummaries', ['json' => $params], 'Ticket');
     }
