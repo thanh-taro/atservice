@@ -11,7 +11,7 @@ class Place extends Object
     public $englishName;
     public $countryCode;
     public $airportName;
-    public $supportJetStart;
+    public $supportJetStar;
     public $supportVietJetAir;
     public $supportVietNamAirline;
     public $order;

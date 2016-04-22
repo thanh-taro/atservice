@@ -18,12 +18,9 @@ class Object
     {
         $attrs = get_object_vars($this);
         if ($atFormat) {
-            $atRes = [];
-            foreach ($attrs as $key => $val) {
-                $atRes[ucfirst($key)] = $val;
-            }
-            $attrs = $atRes;
+            $attrs = array_combine(array_map('ucfirst', array_keys($attrs)), array_values($attrs));
         }
+
         return empty($attrs) ? [] : $attrs;
     }
 }
