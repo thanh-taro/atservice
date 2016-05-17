@@ -24,7 +24,7 @@ class FlightDetail extends Object
                 $flightDuration[] = intval($arr[0]) . ' giờ';
             }
             if (!empty(intval($arr[1]))) {
-                $flightDuration[] = intval($arr[0]) . ' phút';
+                $flightDuration[] = intval($arr[1]) . ' phút';
             }
             $this->flightDuration = implode(' ', $flightDuration);
         }
