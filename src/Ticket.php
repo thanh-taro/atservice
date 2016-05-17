@@ -131,8 +131,9 @@ class Ticket extends Object
         $this->flightDetails = [];
         if (!empty($opt['Details'])) {
             foreach ($opt['Details'] as $flightDetailOpt) {
-                $this->flightDetails[] = new FlightDetail($flightDetailOpt);
-                $this->flightNumbers[] = $flightDetailOpt['FlightNumber'];
+                $flightDetail = new FlightDetail($flightDetailOpt);
+                $this->flightDetails[] = $flightDetail;
+                $this->flightNumbers[] = $flightDetail->flightNumber;
             }
         }
     }

@@ -21,12 +21,13 @@ class FlightDetail extends Object
             $flightDuration = [];
             $this->flightDuration = '';
             if (!empty(intval($arr[0]))) {
-                $flightDuration[] = "{$arr[0]} giờ";
+                $flightDuration[] = intval($arr[0]) . ' giờ';
             }
             if (!empty(intval($arr[1]))) {
-                $flightDuration[] = "{$arr[0]} phút";
+                $flightDuration[] = intval({$arr[0]}) . ' phút';
             }
             $this->flightDuration = implode(' ', $flightDuration);
         }
+        $this->flightNumber = preg_replace('/\s+/', ' ',$this->flightNumber);
     }
 }
