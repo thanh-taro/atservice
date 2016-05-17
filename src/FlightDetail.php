@@ -28,6 +28,6 @@ class FlightDetail extends Object
             }
             $this->flightDuration = implode(' ', $flightDuration);
         }
-        $this->flightNumber = preg_replace('/\s+/', ' ',$this->flightNumber);
+        $this->flightNumber = preg_replace('/\s+/', ' ', $this->flightNumber);
     }
 }
