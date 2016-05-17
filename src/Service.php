@@ -38,14 +38,17 @@ class Service
         return static::__request('GET', 'PriceOptions', [], 'PriceOption');
     }
 
-    public static function getTickets($ticketQuery)
+    public static function getTickets($ticketQuery, $option = [])
     {
         if (is_array($ticketQuery)) {
             $params = $ticketQuery;
         } else {
             $params = $ticketQuery->toArray(true);
         }
-        return static::__request('POST', 'Flights/Find?$expand=TicketOptions,PriceSummaries', ['json' => $params], 'Ticket');
+        if (empty($option)) {
+            $option = ['TicketOptions', 'PriceSummaries', 'Details'];
+        }
+        return static::__request('POST', 'Flights/Find?$expand=' . implode(',', $option), ['json' => $params], 'Ticket');
     }
 
     public static function updatePriceOption($id, $params)

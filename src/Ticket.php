@@ -20,6 +20,8 @@ class Ticket extends Object
     public $source;
     public $sourceGroup;
     public $seatAvailable;
+    public $flightDetails;
+    public $flightNumbers;
     public $ticketOptions;
     public $priceFrom;
 
@@ -125,6 +127,14 @@ class Ticket extends Object
         });
         $this->ticketOptions = $ticketOptions;
         $this->priceFrom = $ticketOptions[0]->price;
+        $this->flightNumbers = [];
+        $this->flightDetails = [];
+        if (!empty($opt['Details'])) {
+            foreach ($opt['Details'] as $flightDetailOpt) {
+                $this->flightDetails[] = new FlightDetail($flightDetailOpt);
+                $this->flightNumbers[] = $flightDetailOpt['FlightNumber'];
+            }
+        }
     }
 
     public function toArray($atFormat = false)
@@ -134,9 +144,15 @@ class Ticket extends Object
             foreach ($arr['TicketOptions'] as $key => $ticketOption) {
                 $arr['TicketOptions'][$key] = $ticketOption->toArray($atFormat);
             }
+            foreach ($arr['FlightDetails'] as $key => $flightDetail) {
+                $arr['FlightDetails'][$key] = $flightDetail->toArray($atFormat);
+            }
         } else {
             foreach ($arr['ticketOptions'] as $key => $ticketOption) {
                 $arr['ticketOptions'][$key] = $ticketOption->toArray($atFormat);
+            }
+            foreach ($arr['flightDetails'] as $key => $flightDetail) {
+                $arr['flightDetails'][$key] = $flightDetail->toArray($atFormat);
             }
         }
         return $arr;
